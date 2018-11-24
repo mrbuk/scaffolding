@@ -12,10 +12,10 @@ import (
 	logging "github.com/mrbuk/scaffolding/logging"
 )
 
-func newBufferLogger() logging.Logger {
+func newBufferLogger() logging.LoggerSettings {
 	buf := &bytes.Buffer{}
 
-	logger := logging.Logger{
+	logger := logging.LoggerSettings{
 		Formatter: &log.JSONFormatter{},
 		Output:    buf,
 		Level:     log.InfoLevel,
@@ -24,7 +24,7 @@ func newBufferLogger() logging.Logger {
 	return logger
 }
 
-func getLogObj(l *logging.Logger) (map[string]interface{}, error) {
+func getLogObj(l *logging.LoggerSettings) (map[string]interface{}, error) {
 	var logObj map[string]interface{}
 	buf, ok := l.Output.(*bytes.Buffer)
 

@@ -11,7 +11,7 @@ import (
 const DefaultLogLevel = log.InfoLevel
 
 // LoggerSetings allows to set the exposed logrus logger settings
-type Logger struct {
+type LoggerSettings struct {
 	Formatter log.Formatter
 	Output    io.Writer
 	Level     log.Level
@@ -19,14 +19,14 @@ type Logger struct {
 
 // DefaultLogger creates a default logrus logger with
 //  { JSON, Stdout, DefaultLogLevel }
-var DefaultLogger = Logger{
+var DefaultLogger = LoggerSettings{
 	Formatter: &log.JSONFormatter{},
 	Output:    os.Stdout,
 	Level:     DefaultLogLevel,
 }
 
 // Init initilizes the logger. Should be called in the init() method
-func (l *Logger) Init() {
+func (l *LoggerSettings) Init() {
 	// Log as JSON instead of the default ASCII formatter.
 	log.SetFormatter(l.Formatter)
 
