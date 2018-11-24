@@ -7,7 +7,8 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-// DefaultLogLevel logrus logger level (INFO)
+// DefaultLogLevel logrus logger level used when not provided via LOG_LEVEL
+// environemnt variable
 const DefaultLogLevel = log.InfoLevel
 
 // LoggerSetings allows to set the exposed logrus logger settings
@@ -17,8 +18,7 @@ type LoggerSettings struct {
 	Level     log.Level
 }
 
-// DefaultLogger creates a default logrus logger with
-//  { JSON, Stdout, DefaultLogLevel }
+// DefaultLogger creates a default logrus logger
 var DefaultLogger = LoggerSettings{
 	Formatter: &log.JSONFormatter{},
 	Output:    os.Stdout,
